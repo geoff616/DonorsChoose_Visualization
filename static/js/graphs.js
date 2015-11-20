@@ -1,3 +1,4 @@
+
 queue()
     .defer(d3.json, "/donorschoose/projects")
     .defer(d3.json, "static/geojson/us-states.json")
@@ -7,11 +8,11 @@ function makeGraphs(error, projectsJson, statesJson) {
 	
 	//Clean projectsJson data
 	var donorschooseProjects = projectsJson;
-	var dateFormat = d3.time.format("%Y-%m-%d");
-	donorschooseProjects.forEach(function(d) {
-		d["date_posted"] = dateFormat.parse(d["date_posted"]);
-		d["date_posted"].setDate(1);
-		d["total_donations"] = +d["total_donations"];
+	var dateFormat = d3.time.format("%Y-%m-%d %H:%M:%S");
+	donorschooseProjects.forEach(function(d) { 
+			d["date_posted"] = dateFormat.parse(d["date_posted"]);
+			d["date_posted"].setDate(1);
+			d["total_donations"] = +d["total_donations"];
 	});
 
 	//Create a Crossfilter instance
